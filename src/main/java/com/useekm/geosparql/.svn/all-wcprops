@@ -1,0 +1,173 @@
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/iacat-enviro-ci/!svn/ver/95/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql
+END
+GeoSPARQLVoc.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/iacat-enviro-ci/!svn/ver/95/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/GeoSPARQLVoc.java
+END
+Union.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Union.java
+END
+Crosses.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Crosses.java
+END
+Area.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Area.java
+END
+Touches.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Touches.java
+END
+CoveredBy.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/CoveredBy.java
+END
+Overlaps.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Overlaps.java
+END
+Within.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Within.java
+END
+Intersection.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Intersection.java
+END
+Simplify.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Simplify.java
+END
+AbstractGeomDoubleFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/AbstractGeomDoubleFunction.java
+END
+AbstractUnaryFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/AbstractUnaryFunction.java
+END
+HausdorffDistance.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/HausdorffDistance.java
+END
+SimplifyPreserveTopology.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/SimplifyPreserveTopology.java
+END
+Buffer.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Buffer.java
+END
+Contains.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Contains.java
+END
+Equals.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Equals.java
+END
+ShortestLine.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/ShortestLine.java
+END
+Difference.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Difference.java
+END
+Covers.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Covers.java
+END
+ContainsProperly.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/ContainsProperly.java
+END
+Disjoint.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Disjoint.java
+END
+AbstractBinaryFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/AbstractBinaryFunction.java
+END
+AbstractFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/AbstractFunction.java
+END
+Relate.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Relate.java
+END
+ClosestPoint.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/ClosestPoint.java
+END
+Distance.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Distance.java
+END
+Intersects.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/geosparql/Intersects.java
+END

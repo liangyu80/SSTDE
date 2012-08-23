@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/iacat-enviro-ci/!svn/ver/171/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/util
+END
+DateFormatter.java
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/iacat-enviro-ci/!svn/ver/166/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/util/DateFormatter.java
+END
+SesameUtil.java
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/iacat-enviro-ci/!svn/ver/171/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/util/SesameUtil.java
+END
+PGConnectionManager.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/util/PGConnectionManager.java
+END
+DataTypeURI.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/iacat-enviro-ci/!svn/ver/120/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/util/DataTypeURI.java
+END
+Test.java
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/util/Test.java
+END

@@ -1,0 +1,1052 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE Ontology [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY owl2xml "http://www.w3.org/2006/12/owl2-xml#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY SysML-QUDV "http://www.example.org/SysML-QUDV.owl#" >
+    <!ENTITY SysML-QUDV-SI "http://www.example.org/SysML-QUDV-SI.owl#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<Ontology xmlns="http://www.w3.org/2006/12/owl2-xml#"
+     xml:base="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl2xml="http://www.w3.org/2006/12/owl2-xml#"
+     xmlns:SysML-QUDV-SI="http://www.example.org/SysML-QUDV-SI.owl#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:SysML-QUDV="http://www.example.org/SysML-QUDV.owl#"
+     URI="http://www.example.org/SysML-QUDV-SI.owl">
+    <Import
+        >http://www.example.org/SysML-QUDV.owl</Import>
+    <Import
+        >http://www.example.org/SysML-QUDV.owl</Import>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;SimpleQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureQK"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureQK"/>
+        <Constant datatypeURI="&xsd;string"
+            >Celsius Temperature</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureQK"/>
+        <Constant datatypeURI="&xsd;string">t</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureQK"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >celsiusTemperatureQK</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;Scale"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureScale"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;scaleValueDefinition"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureScale"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureScaleMeltingPointOfWater"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureScale"/>
+        <Individual URI="&SysML-QUDV-SI;degreeCelsius"/>
+    </ObjectPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureScale"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >celsiusTemperatureScale</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;ScaleValueDefinition"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureScaleMeltingPointOfWater"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;description"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureScaleMeltingPointOfWater"/>
+        <Constant datatypeURI="&xsd;string"
+            >melting point of water at 273.15 kelvin</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;numericalValue"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureScaleMeltingPointOfWater"/>
+        <Constant datatypeURI="&xsd;double">0.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureScaleMeltingPointOfWater"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >celsiusTemperatureScaleMeltingPointOfWater</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;LinearConversionUnit"/>
+        <Individual URI="&SysML-QUDV-SI;degreeCelsius"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;degreeCelsius"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureQK"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;referenceUnit"/>
+        <Individual URI="&SysML-QUDV-SI;degreeCelsius"/>
+        <Individual URI="&SysML-QUDV-SI;kelvin"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;conversionFactor"/>
+        <Individual URI="&SysML-QUDV-SI;degreeCelsius"/>
+        <Constant datatypeURI="&xsd;double">1.0</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;degreeCelsius"/>
+        <Constant datatypeURI="&xsd;string">degree Celsius</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;degreeCelsius"/>
+        <Constant datatypeURI="&xsd;string">degC</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;degreeCelsius"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>degreeCelsius</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;DerivedQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK"/>
+        <Individual URI="&SysML-QUDV-SI;massQK_Power1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK_PowerMinus2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK_Power2"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK"/>
+        <Constant datatypeURI="&xsd;string">energy</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK"/>
+        <Constant datatypeURI="&xsd;string">E</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;energyQK"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>energyQK</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;QuantityKindFactor"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK_Power1"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK_Power1"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK_Power1"/>
+        <Constant datatypeURI="&xsd;double">1.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;energyQK_Power1"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>energyQK_Power1</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;SimpleUnit"/>
+        <Individual URI="&SysML-QUDV-SI;gram"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;gram"/>
+        <Individual URI="&SysML-QUDV-SI;massQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;gram"/>
+        <Constant>gram</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;gram"/>
+        <Constant>g</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;gram"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>gram</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;LinearConversionUnit"/>
+        <Individual URI="&SysML-QUDV-SI;inch"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;inch"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;referenceUnit"/>
+        <Individual URI="&SysML-QUDV-SI;inch"/>
+        <Individual URI="&SysML-QUDV-SI;metre"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;conversionFactor"/>
+        <Individual URI="&SysML-QUDV-SI;inch"/>
+        <Constant datatypeURI="&xsd;double">0.0254</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;inch"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>inch</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;DerivedUnit"/>
+        <Individual URI="&SysML-QUDV-SI;joule"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;joule"/>
+        <Individual URI="&SysML-QUDV-SI;second_PowerMinus2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;joule"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram_Power1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;joule"/>
+        <Individual URI="&SysML-QUDV-SI;metre_Power2"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;joule"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;joule"/>
+        <Constant datatypeURI="&xsd;string">joule</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;joule"/>
+        <Constant datatypeURI="&xsd;string">J</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;joule"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>joule</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;UnitFactor"/>
+        <Individual URI="&SysML-QUDV-SI;joule_Power1"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;joule_Power1"/>
+        <Individual URI="&SysML-QUDV-SI;joule"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;joule_Power1"/>
+        <Constant datatypeURI="&xsd;double">1.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;joule_Power1"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>joule_Power1</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;SimpleUnit"/>
+        <Individual URI="&SysML-QUDV-SI;kelvin"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;kelvin"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;kelvin"/>
+        <Constant>kelvin</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;kelvin"/>
+        <Constant>K</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;kelvin"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>kelvin</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;Prefix"/>
+        <Individual URI="&SysML-QUDV-SI;kilo"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;kilo"/>
+        <Constant datatypeURI="&xsd;string">kilo</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;kilo"/>
+        <Constant datatypeURI="&xsd;string">k</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;unitMultipleFactor"/>
+        <Individual URI="&SysML-QUDV-SI;kilo"/>
+        <Constant datatypeURI="&xsd;double">1.0e3</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;kilo"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>kilo</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;PrefixedUnit"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;prefix"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram"/>
+        <Individual URI="&SysML-QUDV-SI;kilo"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram"/>
+        <Individual URI="&SysML-QUDV-SI;massQK"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;referenceUnit"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram"/>
+        <Individual URI="&SysML-QUDV-SI;gram"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram"/>
+        <Constant datatypeURI="&xsd;string">kilogram</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram"/>
+        <Constant datatypeURI="&xsd;string">kg</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;kilogram"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>kilogram</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;UnitFactor"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram_Power1"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram_Power1"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram_Power1"/>
+        <Constant datatypeURI="&xsd;double">1.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;kilogram_Power1"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>kilogram_Power1</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;SimpleQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK"/>
+        <Constant>length</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK"/>
+        <Constant>L</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;lengthQK"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>lengthQK</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;QuantityKindFactor"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK_Power1"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK_Power1"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK_Power1"/>
+        <Constant datatypeURI="&xsd;double">1.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;lengthQK_Power1"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>lengthQK_Power1</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;QuantityKindFactor"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK_Power2"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK_Power2"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK_Power2"/>
+        <Constant datatypeURI="&xsd;double">2.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;lengthQK_Power2"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>lengthQK_Power2</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;SimpleQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;massQK"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;massQK"/>
+        <Constant>mass</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;massQK"/>
+        <Constant datatypeURI="&xsd;string">M</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;massQK"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>massQK</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;QuantityKindFactor"/>
+        <Individual URI="&SysML-QUDV-SI;massQK_Power1"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;massQK_Power1"/>
+        <Individual URI="&SysML-QUDV-SI;massQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;massQK_Power1"/>
+        <Constant datatypeURI="&xsd;double">1.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;massQK_Power1"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>massQK_Power1</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;SimpleUnit"/>
+        <Individual URI="&SysML-QUDV-SI;metre"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;metre"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;metre"/>
+        <Constant datatypeURI="&xsd;string">metre</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;metre"/>
+        <Constant datatypeURI="&xsd;string">m</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;metre"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>metre</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;DerivedUnit"/>
+        <Individual URI="&SysML-QUDV-SI;metrePerSecond"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;metrePerSecond"/>
+        <Individual URI="&SysML-QUDV-SI;second_PowerMinus1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;metrePerSecond"/>
+        <Individual URI="&SysML-QUDV-SI;metre_Power1"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;metrePerSecond"/>
+        <Constant datatypeURI="&xsd;string"
+            >metre per second</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;metrePerSecond"/>
+        <Constant datatypeURI="&xsd;string">m/s</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;metrePerSecond"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>metrePerSecond</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;UnitFactor"/>
+        <Individual URI="&SysML-QUDV-SI;metre_Power1"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;metre_Power1"/>
+        <Individual URI="&SysML-QUDV-SI;metre"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;metre_Power1"/>
+        <Constant datatypeURI="&xsd;double">1.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;metre_Power1"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>metre_Power1</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;UnitFactor"/>
+        <Individual URI="&SysML-QUDV-SI;metre_Power2"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;metre_Power2"/>
+        <Individual URI="&SysML-QUDV-SI;metre"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;metre_Power2"/>
+        <Constant datatypeURI="&xsd;double">2.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;metre_Power2"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>metre_Power2</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;DerivedQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;powerQK"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;powerQK"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK_Power1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;powerQK"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK_PowerMinus1"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;powerQK"/>
+        <Constant datatypeURI="&xsd;string">power</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;powerQK"/>
+        <Constant datatypeURI="&xsd;string">P</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;powerQK"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>powerQK</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;SimpleUnit"/>
+        <Individual URI="&SysML-QUDV-SI;second"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;second"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;second"/>
+        <Constant datatypeURI="&xsd;string">second</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;second"/>
+        <Constant datatypeURI="&xsd;string">s</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;second"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>second</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;UnitFactor"/>
+        <Individual URI="&SysML-QUDV-SI;second_PowerMinus1"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;second_PowerMinus1"/>
+        <Individual URI="&SysML-QUDV-SI;second"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;second_PowerMinus1"/>
+        <Constant datatypeURI="&xsd;double">-1.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;second_PowerMinus1"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >second_PowerMinus1</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;UnitFactor"/>
+        <Individual URI="&SysML-QUDV-SI;second_PowerMinus2"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;second_PowerMinus2"/>
+        <Individual URI="&SysML-QUDV-SI;second"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;second_PowerMinus2"/>
+        <Constant datatypeURI="&xsd;double">-2.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;second_PowerMinus2"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >second_PowerMinus2</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;SystemOfQuantities"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;baseQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+        <Individual URI="&SysML-QUDV-SI;massQK"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;baseQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureQK"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;baseQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;baseQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+        <Individual URI="&SysML-QUDV-SI;celsiusTemperatureQK"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+        <Individual URI="&SysML-QUDV-SI;powerQK"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+        <Individual URI="&SysML-QUDV-SI;energyQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;description"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+        <Constant datatypeURI="&xsd;string"
+            >As defined in ISO 31 and ISO/IEC 80000.</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+        <Constant datatypeURI="&xsd;string"
+            >International System of Quantities</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+        <Constant datatypeURI="&xsd;string">ISQ</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfQuantities"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >theInternationalSystemOfQuantities</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;SystemOfUnits"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;baseUnit"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Individual URI="&SysML-QUDV-SI;kelvin"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;baseUnit"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Individual URI="&SysML-QUDV-SI;metre"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;baseUnit"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Individual URI="&SysML-QUDV-SI;kilogram"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;baseUnit"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Individual URI="&SysML-QUDV-SI;second"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Individual URI="&SysML-QUDV-SI;joule"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Individual URI="&SysML-QUDV-SI;degreeCelsius"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Individual URI="&SysML-QUDV-SI;watt"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Individual URI="&SysML-QUDV-SI;gram"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;description"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Constant datatypeURI="&xsd;string"
+            >As defined in ISO 31 and ISO/IEC 80000.</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Constant datatypeURI="&xsd;string"
+            >International System of Units</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Constant datatypeURI="&xsd;string">SI</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;theInternationalSystemOfUnits"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >theInternationalSystemOfUnits</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;SimpleQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureQK"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;scale"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureQK"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScale"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureQK"/>
+        <Constant datatypeURI="&xsd;string"
+            >thermodynamic temperature</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureQK"/>
+        <Constant datatypeURI="&xsd;string">&amp;Theta;</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureQK"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >thermodynamicTemperatureQK</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;Scale"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScale"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;scaleValueDefinition"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScale"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScaleTriplePointOfWater"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;scaleValueDefinition"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScale"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScaleAbsoluteZero"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;unit"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScale"/>
+        <Individual URI="&SysML-QUDV-SI;kelvin"/>
+    </ObjectPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScale"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >thermodynamicTemperatureScale</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;ScaleValueDefinition"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScaleAbsoluteZero"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;description"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScaleAbsoluteZero"/>
+        <Constant datatypeURI="&xsd;string"
+            >absolute zero thermodynamic temperature</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;numericalValue"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScaleAbsoluteZero"/>
+        <Constant datatypeURI="&xsd;double">0.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScaleAbsoluteZero"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >thermodynamicTemperatureScaleAbsoluteZero</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;ScaleValueDefinition"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScaleTriplePointOfWater"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;description"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScaleTriplePointOfWater"/>
+        <Constant datatypeURI="&xsd;string"
+            >thermodynamic temperature of the triple point of water</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;numericalValue"/>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScaleTriplePointOfWater"/>
+        <Constant datatypeURI="&xsd;double">273.16</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;thermodynamicTemperatureScaleTriplePointOfWater"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >thermodynamicTemperatureScaleTriplePointOfWater</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;SimpleQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK"/>
+    </ClassAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK"/>
+        <Constant datatypeURI="&xsd;string">time</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK"/>
+        <Constant datatypeURI="&xsd;string">T</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;timeQK"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>timeQK</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;QuantityKindFactor"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK_PowerMinus1"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK_PowerMinus1"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK_PowerMinus1"/>
+        <Constant datatypeURI="&xsd;double">-1.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;timeQK_PowerMinus1"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >timeQK_PowerMinus1</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;QuantityKindFactor"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK_PowerMinus2"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK_PowerMinus2"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;exponent"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK_PowerMinus2"/>
+        <Constant datatypeURI="&xsd;double">-2.0</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;timeQK_PowerMinus2"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant
+                >timeQK_PowerMinus2</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;DerivedQuantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;velocityQK"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;velocityQK"/>
+        <Individual URI="&SysML-QUDV-SI;lengthQK_Power1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;velocityQK"/>
+        <Individual URI="&SysML-QUDV-SI;timeQK_PowerMinus1"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;velocityQK"/>
+        <Constant datatypeURI="&xsd;string">velocity</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;velocityQK"/>
+        <Constant datatypeURI="&xsd;string">v</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;velocityQK"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>velocityQK</Constant>
+        </Annotation>
+    </EntityAnnotation>
+    <ClassAssertion>
+        <Class URI="&SysML-QUDV;DerivedUnit"/>
+        <Individual URI="&SysML-QUDV-SI;watt"/>
+    </ClassAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;watt"/>
+        <Individual URI="&SysML-QUDV-SI;joule_Power1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;factor"/>
+        <Individual URI="&SysML-QUDV-SI;watt"/>
+        <Individual URI="&SysML-QUDV-SI;second_PowerMinus1"/>
+    </ObjectPropertyAssertion>
+    <ObjectPropertyAssertion>
+        <ObjectProperty URI="&SysML-QUDV;quantityKind"/>
+        <Individual URI="&SysML-QUDV-SI;watt"/>
+        <Individual URI="&SysML-QUDV-SI;powerQK"/>
+    </ObjectPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;name"/>
+        <Individual URI="&SysML-QUDV-SI;watt"/>
+        <Constant datatypeURI="&xsd;string">watt</Constant>
+    </DataPropertyAssertion>
+    <DataPropertyAssertion>
+        <DataProperty URI="&SysML-QUDV;symbol"/>
+        <Individual URI="&SysML-QUDV-SI;watt"/>
+        <Constant datatypeURI="&xsd;string">W</Constant>
+    </DataPropertyAssertion>
+    <EntityAnnotation>
+        <Individual URI="&SysML-QUDV-SI;watt"/>
+        <Annotation annotationURI="&rdfs;label">
+            <Constant>watt</Constant>
+        </Annotation>
+    </EntityAnnotation>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 2.2.1.1138) http://owlapi.sourceforge.net -->
+

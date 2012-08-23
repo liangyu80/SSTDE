@@ -1,0 +1,84 @@
+package com.useekm.indexing.context;
+
+import info.aduna.iteration.CloseableIteration;
+
+import java.io.File;
+
+import org.openrdf.model.Statement;
+import org.openrdf.model.URI;
+import org.openrdf.model.ValueFactory;
+import org.openrdf.sail.Sail;
+import org.openrdf.sail.SailConnection;
+import org.openrdf.sail.SailException;
+import org.openrdf.sail.nativerdf.NativeStore;
+
+public class ContextTransition {
+	public static void main(String[] args) throws SailException {
+//		moveTriples();
+		addSameTriples();
+	}
+
+	@SuppressWarnings("unused")
+	private static void moveTriples() throws SailException {
+		String dir1 = "repo2";
+		Sail sail = new NativeStore(new File(dir1));
+
+		String dir2 = "repo-context";
+		Sail sail2 = new NativeStore(new File(dir2));
+
+		sail.initialize();
+		sail2.initialize();
+
+		CloseableIteration<? extends Statement, SailException> statements = sail
+				.getConnection().getStatements(null, null, null, false);
+
+		SailConnection connection = sail2.getConnection();
+		URI value = sail.getValueFactory().createURI(
+				"http://www.ncsa.uiuc.edu/Temp");
+
+		int cachesize = 1000;
+		int cached = 0;
+		long count = 0;
+		for (; statements.hasNext();) {
+			cached++;
+			count++;
+			Statement statement = statements.next();
+			// sail.getConnection().executeUpdate(arg0, arg1, arg2, arg3)
+			connection.addStatement(statement.getSubject(),
+					statement.getPredicate(), statement.getObject(), value);
+			System.out.println(count);
+			if (cached > cachesize) {
+				connection.commit();
+				cached = 0;
+			}
+		}
+	}
+
+	private static void addSameTriples() throws SailException {
+		String dir1 = "repo-test";
+		Sail sail = new NativeStore(new File(dir1));
+		sail.initialize();
+		SailConnection connection = sail.getConnection();
+		ValueFactory factory = sail.getValueFactory();
+		for (int i = 0; i < 20; i++) {
+			connection.addStatement(
+					factory.createURI("http://www.ncsa.edu/subject"),
+					factory.createURI("http://www.ncsa.edu/predicate"),
+					factory.createURI("http://www.ncsa.edu/object"));
+		}
+		
+		connection.addStatement(
+				factory.createURI("http://www.ncsa.edu/subject"),
+				factory.createURI("http://www.ncsa.edu/predicate"),
+				factory.createURI("http://www.ncsa.edu/object"),factory.createURI("http://www.ncsa.edu/resource"));
+		
+		connection.commit();
+		CloseableIteration<? extends Statement, SailException> statements = sail.getConnection().getStatements(null, null, null, false);
+		
+		for(;statements.hasNext();){
+			System.out.println(statements.next());
+		}
+		
+
+	}
+}

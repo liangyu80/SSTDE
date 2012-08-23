@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+.  Copyright 2010 by TalkingTrends (Amsterdam, The Netherlands)
+.  
+.  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+.  in compliance with the License. You may obtain a copy of the License at
+.
+.  http://opensahara.com/licenses/apache-2.0
+.
+.  Unless required by applicable law or agreed to in writing, software distributed under the License
+.  is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+.  or implied. See the License for the specific language governing permissions and limitations under
+.  the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+    http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+    http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    
+    <!-- BigOwlim with SeeChangesSail -->
+    <bean id="repoBigOwlim" lazy-init="true" class="com.useekm.spring.ObjectRepositoryProvider">
+        <property name="sail" ref="sailBigOwlim" />
+        <property name="sailProperties">
+            <props>
+                <prop key="ruleset">empty</prop>
+                <prop key="noPersist">true</prop>
+                <prop key="cache-memory">1m</prop>
+                <!--prop key="enable-optimization">false</prop-->
+            </props>
+        </property>
+        <property name="sailPropertySetter" value="setParameter" />
+        <property name="temporaryDataDirPrefix" value="owlim" />
+    </bean>
+    
+    <bean id="sailBigOwlim" lazy-init="true" class="com.useekm.seechanges.SeeChangesSail">
+        <constructor-arg>
+            <bean class="com.ontotext.trree.OwlimSchemaRepository" />
+        </constructor-arg>
+    </bean>
+    
+    <!-- BigOwlim without SeeChangesSail -->
+    <bean id="repo" lazy-init="true" class="com.useekm.spring.ObjectRepositoryProvider">
+        <property name="sail" ref="sail" />
+        <property name="sailProperties">
+            <props>
+                <prop key="ruleset">empty</prop>
+                <prop key="noPersist">true</prop>
+                <prop key="cache-memory">1m</prop>
+                <!-- prop key="enable-optimization">false</prop-->
+            </props>
+        </property>
+        <property name="sailPropertySetter" value="setParameter" />
+        <property name="temporaryDataDirPrefix" value="owlim" />
+    </bean>
+    
+    <bean id="sail" lazy-init="true" class="com.ontotext.trree.OwlimSchemaRepository" />
+</beans>

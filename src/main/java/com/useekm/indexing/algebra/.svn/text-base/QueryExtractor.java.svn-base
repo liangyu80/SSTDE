@@ -1,0 +1,380 @@
+///*
+// * Copyright 2010 by TalkingTrends (Amsterdam, The Netherlands)
+// *
+// * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+// * in compliance with the License. You may obtain a copy of the License at
+// *
+// * http://opensahara.com/licenses/apache-2.0
+// *
+// * Unless required by applicable law or agreed to in writing, software distributed under the License
+// * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+// * or implied. See the License for the specific language governing permissions and limitations under
+// * the License.
+// */
+//package com.useekm.indexing.algebra;
+//
+//import java.util.ArrayList;
+//import java.util.Collection;
+//import java.util.HashMap;
+//import java.util.HashSet;
+//import java.util.Iterator;
+//import java.util.List;
+//
+//import org.openrdf.model.URI;
+//import org.openrdf.model.Value;
+//import org.openrdf.model.ValueFactory;
+//import org.openrdf.model.impl.URIImpl;
+//import org.openrdf.query.BindingSet;
+//import org.openrdf.query.algebra.And;
+//import org.openrdf.query.algebra.Compare;
+//import org.openrdf.query.algebra.Filter;
+//import org.openrdf.query.algebra.FunctionCall;
+//import org.openrdf.query.algebra.Join;
+//import org.openrdf.query.algebra.LeftJoin;
+//import org.openrdf.query.algebra.QueryModelNodeBase;
+//import org.openrdf.query.algebra.StatementPattern;
+//import org.openrdf.query.algebra.TupleExpr;
+//import org.openrdf.query.algebra.ValueConstant;
+//import org.openrdf.query.algebra.ValueExpr;
+//import org.openrdf.query.algebra.Var;
+//import org.openrdf.query.algebra.helpers.QueryModelVisitorBase;
+//
+//import com.useekm.indexing.IndexManager;
+//import com.useekm.indexing.IndexerSettings;
+//import com.useekm.indexing.GraphAnalyzer.MatchedIndexedPattern;
+//import com.useekm.indexing.algebra.indexer.IdxExpr;
+//import com.useekm.indexing.algebra.indexer.IdxExprAnd;
+//import com.useekm.indexing.algebra.indexer.IdxExprFunction;
+//import com.useekm.indexing.algebra.indexer.IdxMatchQuery;
+//import com.useekm.indexing.algebra.indexer.IdxQuery;
+//import com.useekm.indexing.exception.IndexException;
+//import com.useekm.indexing.internal.Indexer;
+//import com.useekm.indexing.postgis.PostgisIndexerSettings;
+//
+///**
+// * Extracts queries against the {@link Indexer} index from a {@link TupleExpr}.
+// * 
+// * @see #process(TupleExpr, BindingSet)
+// */
+//public class QueryExtractor {
+//    //private static final Logger LOG = LoggerFactory.getLogger(QueryInterpreter.class);
+//    private final IndexManager indexManager;
+//    private final ValueFactory valueFactory;
+//
+//    public QueryExtractor(IndexManager indexManager, ValueFactory valueFactory) {
+//        this.indexManager = indexManager;
+//        this.valueFactory = valueFactory;
+//    }
+//
+//    /**
+//     * <p>
+//     * Processes a {@link TupleExpr} and extracts queries against the index. All bindings in the {@link TupleExpr} should have been expanded before calling this method.
+//     * <p>
+//     * The method searches for (filter-)functions that are supported by the indexer ({@link IndexerSettings#isSupportedFunction(URI)}), and creates {@link IndexerExpr} elements
+//     * from those filters and from all statement-patterns that use the first variable of such functions in the object position. E.g. patterns like:
+//     * 
+//     * <pre>
+//     * ?subject &lt;uri:predicate&gt; ?matcher .
+//     * FILTER(uri:filter(?matcher, "var1", "var2", &lt;u:option1&gt) && uri:filter2(?matcher))
+//     * </pre>
+//     * 
+//     * For each <code>?matcher</code> pattern in the {@link TupleExpr} this interpreter will create an {@link IdxQuery}, that can be further analyzed by the {@link Indexer}. The
+//     * {@link Indexer} will then have to either provide a list of values that are matched and will be bound to <code>?something</code> and <code>?something</code>. Or if
+//     * <code>?something</code> actually was a resource, decide whether that resource matches the query.
+//     * 
+//     * @param tupleExpr The original {@link TupleExpr} in which this function will look for extension patterns as described above.
+//     *        All query bindings should have been expanded before calling this function. This function will rewrite the {@link TupleExpr} to remove all matched patterns, and
+//     *        replace them by one {@link IndexerExpr} for each <code>?matcher</code>.
+//     * @return true if the {@link TupleExpr} has been changed by this method, false otherwise.
+//     * 
+//     * @throws IndexException When the query is non-conformant to the specs.
+//     */
+//    public boolean process(TupleExpr tupleExpr) throws IndexException {
+//        boolean changed = false;
+////        SearchVarVisitor searchVars = new SearchVarVisitor(indexManager.getSettings());
+////        tupleExpr.visit(searchVars);
+//        //        tupleExpr.visitChildren(searchVars);
+////        MatchStatementVisitor matchStatements = new MatchStatementVisitor();
+////        tupleExpr.visit(matchStatements);
+////        HashMap<String, String> variableMappings = new HashMap<String, String>();
+////        Collection<StatementPattern> matchedPatterns =
+////            getMatchedPatterns(matchStatements.matchStatements, indexManager.getSettings().getMatchSatatments(), searchVars.searchVars, indexManager.getSettings().getIndexedVars(),
+////                variableMappings);
+//
+//        
+//        MatchedIndexedPattern graph = indexManager.findBestIndexer(tupleExpr);
+//        
+//        if (graph != null) {
+//            buildQuery(graph);
+//            changed = true;
+//        }
+//        return changed;
+//    }
+//
+//    private Collection<StatementPattern> getMatchedPatterns(Collection<StatementPattern> matchStatements, Collection<StatementPattern> matchStatements2,
+//        Collection<Var> searchVars,
+//        Collection<Var> indexedVars, HashMap<String, String> nameMappings) {
+//        //to find out the subgraph in the first collection of statements that match the second collection of statements 
+//        @SuppressWarnings("unchecked") Collection<StatementPattern> newstats1 = (Collection<StatementPattern>)cloneCollection(matchStatements);
+//        Collection<StatementPattern> newstats2 = (Collection<StatementPattern>)cloneCollection(matchStatements2);
+//
+//        HashMap<String, String> nameMapping = new HashMap<String, String>();
+//        Collection<StatementPattern> matchedPattern = new ArrayList<StatementPattern>();
+//        for (StatementPattern pattern: matchStatements2) {
+//            for (StatementPattern pattern2: matchStatements) {
+//                if (subsumeStatement(pattern, pattern2)) {
+//                    matchedPattern.add(pattern2);
+//                }
+//            }
+//        }
+//        return matchedPattern.size() == matchStatements2.size() ? matchedPattern : null;
+//        //        Collection<String> startingVars = new ArrayList<String>();
+//        //        startingVars.addAll(c)
+//        //order the second collection to put all the 
+//    }
+//
+//    private boolean subsumeStatement(StatementPattern pattern1, StatementPattern pattern2) {
+//        return subsumeVar(pattern1.getSubjectVar(), pattern2.getSubjectVar()) && subsumeVar(pattern1.getPredicateVar(), pattern2.getPredicateVar())
+//            && subsumeVar(pattern1.getObjectVar(), pattern2.getObjectVar());
+//    }
+//
+//    private boolean subsumeVar(Var var1, Var var2) {
+//        if (var1.hasValue() || var2.hasValue()) {
+//            return var1.getValue().equals(var2.getValue());
+//        } else if (var1.getName() != null && var2.getName() != null) {
+//            return var1.getName().equals(var2.getName());
+//        }
+//
+//        return false;
+//    }
+//
+//    private Collection<?> cloneCollection(Collection<? extends QueryModelNodeBase> objects) {
+//        Collection<QueryModelNodeBase> collection = new ArrayList<QueryModelNodeBase>();
+//        for (QueryModelNodeBase object: objects) {
+//            collection.add(object.clone());
+//        }
+//        return collection;
+//        //        return null;
+//    }
+//
+//    private IdxQuery buildQuery(MatchedIndexedPattern graph) {
+////        FilterFunction fVisitor = new FilterFunction(searchedVars);
+////        tupleExpr.visit(fVisitor);
+//        //        IdxQuery result = new IdxMatchQuery(subject, matchStatement.getPredicateVar(), matchStatement.getObjectVar(), fVisitor.filter);
+//
+////        HashSet<Var> vars = new HashSet<Var>();
+////        for (StatementPattern pattern: matchStatements) {
+////            if (!pattern.getSubjectVar().hasValue()) {
+////                vars.add(pattern.getSubjectVar());
+////            }
+////            if (!pattern.getObjectVar().hasValue()) {
+////                vars.add(pattern.getObjectVar());
+////            }
+////        }
+//
+//        IdxQuery result = new IdxMatchQuery(vars, fVisitor.filter);
+//
+//        removeMatchedPattern(matchStatements, new IndexerExprReplacer(result));
+//        return result;
+//        //        return null;
+//    }
+//
+//    private static class SearchVarVisitor extends QueryModelVisitorBase<RuntimeException> {
+//        private final IndexerSettings settings;
+//        private final Collection<Var> searchVars = new ArrayList<Var>(); //probably faster than set for small collections
+//
+//        public SearchVarVisitor(IndexerSettings settings) {
+//            this.settings = settings;
+//        }
+//
+//        @Override public void meet(FunctionCall fn) {
+//
+//            Var result = settings.getResultVarFromFunctionCall(new URIImpl(fn.getURI()), fn.getArgs());
+//            if (result != null && !searchVars.contains(result))
+//                searchVars.add(result);
+//            // No call to super; nesting of function calls not currently supported in rewrites.
+//            // (constant expressions should have been resolved by ConstantOptimizer before).
+//        }
+//
+//        @Override public void meet(Compare node) throws RuntimeException {
+//
+//            // TODO Auto-generated method stub
+//            if (node.getLeftArg() instanceof Var) {
+//                searchVars.add((Var)node.getLeftArg());
+//            }
+//
+//        }
+//
+//    }
+//
+//    private static class MatchStatementVisitor extends QueryModelVisitorBase<RuntimeException> {
+//        //        private final Collection<Var> searchVars;
+//        //        private final Collection<StatementPattern> patterns;
+//        //        private final Collection<Var> usedVars = new ArrayList<Var>();
+//        private final List<StatementPattern> matchStatements = new ArrayList<StatementPattern>();
+//
+//        public MatchStatementVisitor() {
+//            //            this.searchVars = vars;
+//            //            this.patterns = settings.getMatchSatatments();
+//        }
+//
+//        @Override public void meet(StatementPattern statement) {
+//            //            Var object = statement.getObjectVar();
+//            //            if (searchVars.contains(object))
+//            //                if (usedVars.contains(object))
+//            //                    throw new IndexException("Illegal search, variable is used multiple times as object: " + object.getName());
+//            //                else {
+//            //                    usedVars.add(object);
+//            matchStatements.add(statement);
+//            //                }
+//        }
+//    }
+//
+//    private class CheckNoSubjectOrPredicate extends QueryModelVisitorBase<RuntimeException> {
+//        private String matchVar;
+//
+//        public CheckNoSubjectOrPredicate(String matchVar) {
+//            this.matchVar = matchVar;
+//        }
+//
+//        @Override public void meet(StatementPattern statement) {
+//            if (matchVar.equals(statement.getSubjectVar().getName()) || matchVar.equals(statement.getPredicateVar().getName()))
+//                throw new IndexException("Query error: search variable " + matchVar + " used in multiple statement patterns");
+//        }
+//    }
+//
+//    private abstract class AbstractEnhanceVisitor extends QueryModelVisitorBase<RuntimeException> {
+//        //        final String matchVar;
+//        IdxExpr filter;
+//        protected Collection<Var> matchVars = null;
+//
+//        public AbstractEnhanceVisitor(Collection<Var> matchVars) {
+//            this.matchVars = matchVars;
+//        }
+//
+//        protected void addFilter(Var var, URI uri, int resultPosition, Value[] values) {
+//            IdxExpr expr = new IdxExprFunction(var, uri, resultPosition, values);
+//            if (filter == null)
+//                filter = expr;
+//            else
+//                filter = new IdxExprAnd(filter, expr);
+//        }
+//    }
+//
+//    private class FilterFunction extends AbstractEnhanceVisitor {
+//
+//        public FilterFunction(Collection<Var> matchVars) {
+//            super(matchVars);
+//        }
+//
+//        @Override public void meet(FunctionCall call) {
+//            URI fnUri = valueFactory.createURI(call.getURI());
+//            Var resultVar = indexManager.getSettings().getResultVarFromFunctionCall(fnUri, call.getArgs());
+//            for (Var var: matchVars) {
+//                if (resultVar != null && resultVar.getName().equals(var.getName())) {
+//                    addFilter(var, valueFactory.createURI(call.getURI()), getResultArgPosition(var.getName(), call.getArgs()), extractArguments(var.getName(), call));
+//                    if (call.getParentNode() instanceof Filter || call.getParentNode() instanceof And || call.getParentNode() instanceof LeftJoin)
+//                        call.replaceWith(new ValueConstant(valueFactory.createLiteral(true)));
+//                    else
+//                        throw new IndexException("Query error: Found " + call + " as part of an expression that is too complex");
+//                    break;
+//                }
+//            }
+//        }
+//
+//        @Override public void meet(Compare node) throws RuntimeException {
+//            if (node.getLeftArg() instanceof Var) {
+//                for (Var var: matchVars) {
+//                    if (var.equals(node.getLeftArg())) {
+//                        Value value = node.getRightArg() instanceof ValueConstant ? ((ValueConstant)node.getRightArg()).getValue() : null;
+//                        addFilter((Var)node.getLeftArg(), valueFactory.createURI(PostgisIndexerSettings.OPERATOR_NS + node.getOperator()), 0, new Value[] {value});
+//                        if (node.getParentNode() instanceof Filter || node.getParentNode() instanceof And || node.getParentNode() instanceof LeftJoin)
+//                            node.replaceWith(new ValueConstant(valueFactory.createLiteral(true)));
+//                        else
+//                            throw new IndexException("Query error: Found " + node + " as part of an expression that is too complex");
+//                        break;
+//
+//                    }
+//
+//                }
+//
+//            }
+//        }
+//
+//        private int getResultArgPosition(String matchName, List<ValueExpr> args) {
+//            for (int i = 0; i != args.size(); ++i) {
+//                ValueExpr arg = args.get(i);
+//                if (arg instanceof Var && matchName.equals(((Var)arg).getName()))
+//                    return i;
+//            }
+//            throw new IllegalStateException();
+//        }
+//
+//        private Value[] extractArguments(String matchName, FunctionCall call) {
+//            Value args[] = new Value[call.getArgs().size() - 1];
+//            int argI = 0;
+//            for (int i = 0; i != call.getArgs().size(); ++i) {
+//                ValueExpr arg = call.getArgs().get(i);
+//                if (argI == i && arg instanceof Var && matchName.equals(((Var)arg).getName()))
+//                    continue;
+//                if (arg instanceof ValueConstant)
+//                    args[argI] = ((ValueConstant)arg).getValue();
+//                else if (arg instanceof Var && ((Var)arg).hasValue())
+//                    args[argI] = ((Var)arg).getValue();
+//                else
+//                    throw new IndexException("Query error: Found " + arg + ", expected a Literal, BNode or URI");
+//                ++argI;
+//            }
+//            return args;
+//        }
+//
+//        @Override public void meet(Filter filter) {
+//            //First visit children, then condition (reverse of default):
+//            filter.getArg().visit(this);
+//            filter.getCondition().visit(this);
+//        }
+//    }
+//
+//    private void removeMatchedPattern(Collection<StatementPattern> patterns, TupleExprReplacer replacer) {
+//
+//        Iterator<StatementPattern> iterator = patterns.iterator();
+//        if (iterator.hasNext()) {
+//            iterator.next().replaceWith(replacer.createReplacement(null));
+//        }
+//        for (; iterator.hasNext();) {
+//            //            iterator.next().replaceWith(new ValueConstant(valueFactory.createLiteral(true)));
+//            StatementPattern pattern = iterator.next();
+//
+//            if (pattern.getParentNode() instanceof Join) {
+//                Join join = (Join)pattern.getParentNode();
+//                TupleExpr theOther = null;
+//                if (join.getLeftArg() == pattern) {
+//                    theOther = join.getRightArg();
+//                } else {
+//                    theOther = join.getLeftArg();
+//                }
+//                join.replaceWith(theOther);
+//                //                iterator.next().replaceWith(new EmptySet());
+//            } else {
+//                throw new IndexException("no filter to replace");
+//            }
+//
+//        }
+//    }
+//
+//    private interface TupleExprReplacer {
+//        TupleExpr createReplacement(TupleExpr org);
+//    }
+//
+//    private class IndexerExprReplacer implements TupleExprReplacer {
+//        private final IdxQuery indexQuery;
+//
+//        public IndexerExprReplacer(IdxQuery indexQuery) {
+//            this.indexQuery = indexQuery;
+//        }
+//
+//        @Override public TupleExpr createReplacement(TupleExpr org) {
+//            return new IndexerExpr(indexQuery, indexManager, valueFactory);
+//        }
+//    }
+//}

@@ -1,0 +1,257 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/iacat-enviro-ci/!svn/ver/171/SGST/useekm-core2/trunk/useekm-core2/lib
+END
+aduna-commons-concurrent-2.7.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/aduna-commons-concurrent-2.7.0.jar
+END
+openrdf-sesame-2.6.3-onejar.jar
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/iacat-enviro-ci/!svn/ver/84/SGST/useekm-core2/trunk/useekm-core2/lib/openrdf-sesame-2.6.3-onejar.jar
+END
+aduna-commons-io-2.10.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/aduna-commons-io-2.10.0.jar
+END
+postgis-stubs-1.3.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/postgis-stubs-1.3.3.jar
+END
+postgresql-9.0-801.jdbc4.jar
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/postgresql-9.0-801.jdbc4.jar
+END
+commons-dbcp-1.4.jar
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/commons-dbcp-1.4.jar
+END
+commons-codec-1.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/commons-codec-1.3.jar
+END
+aopalliance-1.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/aopalliance-1.0.jar
+END
+slf4j-api-1.6.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/slf4j-api-1.6.1.jar
+END
+commons-lang-2.5.jar
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/commons-lang-2.5.jar
+END
+mysql-connector-java-5.1.6.jar
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/mysql-connector-java-5.1.6.jar
+END
+slf4j-log4j12-1.6.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/slf4j-log4j12-1.6.1.jar
+END
+jts-1.11.jar
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/jts-1.11.jar
+END
+antlr-runtime-3.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/antlr-runtime-3.2.jar
+END
+mockito-all-1.8.5.jar
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/mockito-all-1.8.5.jar
+END
+commons-cli-1.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/commons-cli-1.2.jar
+END
+junit-4.8.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/junit-4.8.2.jar
+END
+antlr-2.7.7.jar
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/antlr-2.7.7.jar
+END
+commons-logging-1.1.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/commons-logging-1.1.1.jar
+END
+javassist-3.11.0.GA.jar
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/javassist-3.11.0.GA.jar
+END
+alibaba-repository-object-2.0-beta12.jar
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/alibaba-repository-object-2.0-beta12.jar
+END
+dom4j-1.6.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/dom4j-1.6.1.jar
+END
+log4j-1.2.16.jar
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/log4j-1.2.16.jar
+END
+stringtemplate-3.2.jar
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/stringtemplate-3.2.jar
+END
+aduna-commons-i18n-1.4.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/aduna-commons-i18n-1.4.0.jar
+END
+alibaba-repository-optimistic-2.0-beta12.jar
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/alibaba-repository-optimistic-2.0-beta12.jar
+END
+xercesImpl-2.4.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/xercesImpl-2.4.0.jar
+END
+aduna-commons-collections-2.8.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/aduna-commons-collections-2.8.0.jar
+END
+aduna-commons-iteration-2.10.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/aduna-commons-iteration-2.10.0.jar
+END
+aduna-commons-xml-2.7.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/aduna-commons-xml-2.7.0.jar
+END
+elasticsearch-0.17.6.jar
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/elasticsearch-0.17.6.jar
+END
+alibaba-model-2.0-beta12.jar
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/alibaba-model-2.0-beta12.jar
+END
+aduna-commons-net-2.7.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/aduna-commons-net-2.7.0.jar
+END
+commons-httpclient-3.1.jar
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/commons-httpclient-3.1.jar
+END
+alibaba-composition-object-2.0-beta12.jar
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/alibaba-composition-object-2.0-beta12.jar
+END
+postgis-jdbc-1.3.3.jar
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/postgis-jdbc-1.3.3.jar
+END
+aduna-commons-text-2.7.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/aduna-commons-text-2.7.0.jar
+END
+aspectjrt-1.6.10.jar
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/aspectjrt-1.6.10.jar
+END
+aduna-commons-lang-2.9.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/aduna-commons-lang-2.9.0.jar
+END
+commons-io-2.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/commons-io-2.0.jar
+END
+commons-pool-1.5.4.jar
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/commons-pool-1.5.4.jar
+END
+persistence-api-1.0.jar
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/lib/persistence-api-1.0.jar
+END

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Matching>
+	<NameSpace>
+		<Prefix>http://rdf.opensahara.com/search#</Prefix>
+	</NameSpace>
+
+	<Predicate>
+		<From>http://rdf.opensahara.com/search#</From>
+		<To>http://rdf.opensahara.com/search#</To>
+	</Predicate>
+</Matching>

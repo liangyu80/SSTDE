@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext
+END
+Unary.java
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext/Unary.java
+END
+AbstractUnary.java
+K 25
+svn:wc:ra_dav:version-url
+V 122
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext/AbstractUnary.java
+END
+Fulltext.java
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext/Fulltext.java
+END
+Word.java
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext/Word.java
+END
+FulltextParseException.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext/FulltextParseException.java
+END
+And.java
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext/And.java
+END
+FulltextSearch.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext/FulltextSearch.java
+END
+Or.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext/Or.java
+END
+AbstractBinary.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext/AbstractBinary.java
+END
+Prefix.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext/Prefix.java
+END
+Binary.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/fulltext/Binary.java
+END

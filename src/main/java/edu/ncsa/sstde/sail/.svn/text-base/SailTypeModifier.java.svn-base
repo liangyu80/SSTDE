@@ -1,0 +1,93 @@
+package com.useekm.indexing.sail;
+
+import java.io.File;
+
+import org.openrdf.model.BNode;
+import org.openrdf.model.Resource;
+import org.openrdf.model.Statement;
+import org.openrdf.model.URI;
+import org.openrdf.model.ValueFactory;
+import org.openrdf.query.BindingSet;
+import org.openrdf.query.MalformedQueryException;
+import org.openrdf.query.QueryEvaluationException;
+import org.openrdf.query.QueryLanguage;
+import org.openrdf.query.TupleQuery;
+import org.openrdf.query.TupleQueryResult;
+import org.openrdf.repository.RepositoryConnection;
+import org.openrdf.repository.RepositoryException;
+import org.openrdf.repository.RepositoryResult;
+import org.openrdf.repository.manager.LocalRepositoryManager;
+import org.openrdf.repository.manager.SystemRepository;
+
+public class SailTypeModifier {
+
+	public static void main(String[] args) throws RepositoryException,
+			MalformedQueryException, QueryEvaluationException {
+		String datadir = "E:\\SSN\\http\\OpenRDF Sesame";
+		String repoID = "IACAT";
+		if (args.length == 2) {
+			datadir = args[0];
+			repoID = args[1];
+		}
+		System.out.println("Dir = " + datadir + ", repoID = " + repoID);
+		changeRepoType(datadir, repoID);
+
+	}
+
+	private static void changeRepoType(String datadir, String repoID)
+			throws RepositoryException, MalformedQueryException,
+			QueryEvaluationException {
+		LocalRepositoryManager manager = new LocalRepositoryManager(new File(
+				datadir));
+		manager.initialize();
+		SystemRepository repository = manager.getSystemRepository();
+
+		RepositoryConnection connection = repository.getConnection();
+
+		String sparql = "select ?impl where {?repo <http://www.openrdf.org/config/repository#repositoryID> ?id. "
+				+ "?repo <http://www.openrdf.org/config/repository#repositoryImpl> ?impl. Filter(?id='"
+				+ repoID + "')}";
+		TupleQuery query = connection.prepareTupleQuery(QueryLanguage.SPARQL,
+				sparql);
+		TupleQueryResult result = query.evaluate();
+
+		if (!result.hasNext()) {
+			System.out.println("The repository " + repoID + "could not be found");
+		}else{
+			System.out.println("The repository " + repoID + "has been found");
+		}
+		while (result.hasNext()) {
+			BindingSet bindingSet = result.next();
+
+			ValueFactory factory = repository.getValueFactory();
+			Resource node = (Resource) bindingSet.getValue("impl");
+			URI predicate = factory
+					.createURI("http://www.openrdf.org/config/repository#repositoryType");
+			RepositoryResult<Statement> statements = connection.getStatements(node,
+					predicate, null, false);
+
+			Resource context = null;
+			for (; statements.hasNext();) {
+				Statement statement = statements.next();
+				if (statement.getContext() != null) {
+					context = statement.getContext();
+					break;
+				}
+			}
+
+			if (context != null) {
+				connection.remove(node, predicate, null);
+				Statement statement = factory
+						.createStatement(
+								node,
+								predicate,
+								factory.createLiteral("useekm2:IndexingSailRepository"),
+								context);
+				connection.add(statement);
+				
+			}
+		}
+
+		connection.commit();
+	}
+}
