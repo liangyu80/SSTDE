@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/junit
+END
+context-repo-fortest-bigowlim.xml
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/junit/context-repo-fortest-bigowlim.xml
+END
+context-repo-fortest-repositorysail.xml
+K 25
+svn:wc:ra_dav:version-url
+V 145
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/junit/context-repo-fortest-repositorysail.xml
+END
+context-db-fortest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 128
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/junit/context-db-fortest.xml
+END
+context-repo-fortest-bigdata.xml
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/junit/context-repo-fortest-bigdata.xml
+END
+context-repo-fortest-smartsail.xml
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/junit/context-repo-fortest-smartsail.xml
+END
+context-repo-fortest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/junit/context-repo-fortest.xml
+END
+context-properties-fortest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/junit/context-properties-fortest.xml
+END
+context-repo-fortest-memory.xml
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/junit/context-repo-fortest-memory.xml
+END
+context-sesame-fortest.xml
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/junit/context-sesame-fortest.xml
+END

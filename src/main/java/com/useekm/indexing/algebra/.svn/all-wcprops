@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/iacat-enviro-ci/!svn/ver/132/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra
+END
+OrderByOptimizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/OrderByOptimizer.java
+END
+IndexerExprJoin.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/IndexerExprJoin.java
+END
+QueryExtractor.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/iacat-enviro-ci/!svn/ver/81/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/QueryExtractor.java
+END
+ConstraintOptimizer.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/iacat-enviro-ci/!svn/ver/81/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/ConstraintOptimizer.java
+END
+IndexerExpr.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/iacat-enviro-ci/!svn/ver/132/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/IndexerExpr.java
+END
+AbstractTopJoinFinder.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/AbstractTopJoinFinder.java
+END

@@ -1,0 +1,84 @@
+<!-- ==================================================================================
+
+	Project : SSTDE
+	Description : Build file for SSTDE
+	
+	Output is two archived sets one with uSeekM2.0 and no dependencies (SSTDE.jar, this
+	is for drop-in replace of SSTDE.jar in 
+	1) IACAT-migration-tool
+	2) webapp/openrdf-sesame/WEB-INF/lib/
+	
+	and the other with the dependencies included. This will be used to change sesame repository type:
+	1) 
+	sudo java -cp "*:*" edu.ncsa.sstde.sail.SailTypeModifier /datafs1/openrdf/openrdf-sesame/ IACAT
+	
+	Remember the class path has all the dependcies.
+==========================================================================================-->
+<project name="SSTDE" default="dist" basedir=".">
+	<description>
+        Build file for SSTDE
+    </description>
+	<!-- set global properties for this build -->
+	<property name="src" location="src/main/java" />
+	<property name="build" location="build" />
+	<property name="dist" location="dist" />
+	<property name="lib" location="lib" />
+	<property name="meta" location="META-INF" />
+	
+	<path id="build.classpath">
+		<fileset dir="${lib}" includes="*.jar" />
+	</path>
+
+	<target name="clean">
+		<!-- Perform clean-up before building -->
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+	</target>
+
+	<target name="init" depends="clean">
+		<!-- Create the time stamp -->
+		<tstamp />
+		<!-- Create the build directory structure used by compile and the dist directory -->
+		<mkdir dir="${build}" />
+		<mkdir dir="${dist}" />
+
+	</target>
+
+	<target name="compile" depends="init" description="Compile the Source">
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac srcdir="${src}" destdir="${build}">
+			<classpath refid="build.classpath" />
+		</javac>
+		<mkdir dir="${build}/META-INF" />
+		<copy todir="${build}/META-INF">
+			<fileset dir="${meta}"></fileset>
+		</copy>
+	</target>
+
+	<target name="dist" depends="compile" description="Generate the distribution">
+		<!-- Create the distribution directory and then create the zip and perform cleanup-->
+
+		<mkdir dir="${dist}/lib" />
+		<copy todir="${dist}">
+			<fileset dir="${src}" includes="*.xml" />
+		</copy>
+
+		<jar jarfile="${dist}/lib/SSTDE.jar" basedir="${build}">
+			
+		</jar>
+		<tstamp />
+		<zip destfile="${basedir}/SSTDE-nodependencies.zip" basedir="${dist}" />
+
+		<copy todir="${dist}/lib" flatten="true">
+			<fileset dir="${lib}" includes="*.jar" />
+		</copy>
+		<tstamp />
+		<zip destfile="${basedir}/SSTDE-withdependencies.zip" basedir="${dist}" />
+
+		<delete dir="${build}" />
+		<delete dir="${dist}" />
+
+	</target>
+
+
+</project>

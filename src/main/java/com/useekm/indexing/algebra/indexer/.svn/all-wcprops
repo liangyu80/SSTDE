@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/svn/iacat-enviro-ci/!svn/ver/81/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer
+END
+AbstractIdxExpr.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/AbstractIdxExpr.java
+END
+IdxMatchQuery.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/iacat-enviro-ci/!svn/ver/81/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/IdxMatchQuery.java
+END
+IdxConstraintQuery.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/IdxConstraintQuery.java
+END
+AbstractIdxQuery.java
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/AbstractIdxQuery.java
+END
+IdxQuery.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/IdxQuery.java
+END
+IdxExprTreePrinter.java
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/IdxExprTreePrinter.java
+END
+IdxExprFunction.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/IdxExprFunction.java
+END
+IdxVar.java
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/IdxVar.java
+END
+IdxJoin.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/IdxJoin.java
+END
+IdxExprAnd.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/IdxExprAnd.java
+END
+IdxExpr.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/IdxExpr.java
+END
+IdxOrder.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/algebra/indexer/IdxOrder.java
+END

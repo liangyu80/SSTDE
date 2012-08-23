@@ -1,0 +1,302 @@
+/*
+ * Copyright 2011 by TalkingTrends (Amsterdam, The Netherlands)
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ * 
+ * http://opensahara.com/licenses/apache-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package com.useekm.pipeline;
+
+import info.aduna.iteration.CloseableIteration;
+import info.aduna.iteration.CloseableIteratorIteration;
+import info.aduna.iteration.FilterIteration;
+import info.aduna.iteration.UnionIteration;
+
+import java.util.Collection;
+import java.util.HashSet;
+
+import org.openrdf.model.Model;
+import org.openrdf.model.Namespace;
+import org.openrdf.model.Resource;
+import org.openrdf.model.Statement;
+import org.openrdf.model.URI;
+import org.openrdf.model.Value;
+import org.openrdf.model.ValueFactory;
+import org.openrdf.model.impl.LinkedHashModel;
+import org.openrdf.query.BindingSet;
+import org.openrdf.query.Dataset;
+import org.openrdf.query.QueryEvaluationException;
+import org.openrdf.query.algebra.QueryRoot;
+import org.openrdf.query.algebra.TupleExpr;
+import org.openrdf.query.algebra.UpdateExpr;
+import org.openrdf.sail.SailConnection;
+import org.openrdf.sail.SailException;
+import org.openrdf.sail.optimistic.helpers.DeltaMerger;
+
+import com.useekm.indexing.internal.QueryEvaluator;
+
+/**
+ * Connection that stores a delta of additions and removals to the store, without passing them to the underlying (wrapped) sail.
+ * The changes are reflected by queries and reads on the PipelineSailConnection (but not on the underlying connection).
+ * Changes can not be committed (see {@link #commit()}), the underlying connection can be a read-only connection as it is never
+ * changed through actions on the {@link PipelineSailConnection}.
+ * <p>
+ * The purpose of the PipelineSailConnection is to give read/write like access to an underlying read-only {@link SailConnection}. When a transaction is finished the changes (delta)
+ * can be retrieved and send to a high-performance SailConnection for writing. Some triple stores (like <a href="http://www.bigdata.com/bigdata/blog/">BigData</a>) have a model
+ * where higher throughput can be achieved when there is just one write connection, and all other connections are read-only. This sail provides an easy transition to that model.
+ * Note that BigData also offers true isolated read-write connections, which in most cases will be a better choice than using the PipelineSailConnection.
+ * <p>
+ * The PipelineSailConnection can also be used with <a href="http://www.ontotext.com/owlim/">Owlim</a> to make queries reflect the current state of a connection. Owlim does not
+ * provide access to statements that are added until a connection is committed, and will still show deleted statements until a commit point. This makes building logic for OLTP
+ * applications with BigOwlim much harder. The PipelineSailConnection solves that issue.
+ * <p>
+ * The PipelineSailConnection can be used directly by calling the constructor with an existing {@link SailConnection} as argument, or by wrapping a Sail in a {@link PipelineSail},
+ * to get {@link PipelineSailConnection}s automatically. Additionally, there is {@link SmartSailWrapper} for more advanced use of {@link PipelineSailConnection}, including support
+ * for different connection types, and support to simulate read-write transaction semantics by integrating {@link PipelineSailConnection} with a {@link DeltaWriter}.
+ * <p>
+ * <strong>Statement inferencing is not supported</strong>
+ */
+public class PipelineSailConnection implements SailConnection {
+    //TODO: remove dependencies on alibaba-optimistic-repository: ExternalModel & DeltaMerger (and afterwards search to remove "org.openrdf.sail.optimistic" from all sources)
+    private Model added;
+    private Model removed;
+    private QueryEvaluator queryEvaluator;
+    private SailConnection wrapped;
+    private ValueFactory valueFactory;
+
+    public PipelineSailConnection(SailConnection connection, ValueFactory valueFactory, QueryEvaluator evaluator) {
+        this.wrapped = connection;
+        this.valueFactory = valueFactory;
+        this.queryEvaluator = evaluator;
+    }
+
+    private void initModels() {
+        if (added == null) {
+            added = new LinkedHashModel();
+            removed = new LinkedHashModel();
+        }
+    }
+
+    private void endModelUnit() {
+        if (added != null) {
+            added.clear();
+            removed.clear();
+            added = null;
+            removed = null;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void addStatement(Resource subj, URI pred, Value obj, Resource... contexts) throws SailException {
+        initModels();
+        if (removed.contains(subj, pred, obj, contexts))
+            removed.remove(subj, pred, obj, contexts);
+        else {
+            CloseableIteration<? extends Statement, SailException> sts = wrapped.getStatements(subj, pred, obj, false, contexts);
+            try {
+                if (!sts.hasNext())
+                    added.add(subj, pred, obj, contexts);
+            } finally {
+                sts.close();
+            }
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void removeStatements(Resource subj, URI pred, Value obj, Resource... contexts) throws SailException {
+        initModels();
+        CloseableIteration<? extends Statement, SailException> iter = getStatements(subj, pred, obj, false, contexts);
+        try {
+            while (iter.hasNext()) {
+                Statement st = iter.next();
+                if (!added.remove(st.getSubject(), st.getPredicate(), st.getObject(), st.getContext()))
+                    removed.add(st);
+            }
+        } finally {
+            iter.close();
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void clear(Resource... contexts) throws SailException {
+        removeStatements(null, null, null, contexts);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void close() throws SailException {
+        endModelUnit();
+        wrapped.close();
+    }
+
+    /**
+     * Calling commit on a {@link PipelineSailConnection} is not allowed. The purpose of the connection is
+     * to record the changes of a transaction so that those changes can be send to another (writer) connection.
+     * The suggested end of a transaction is to query for the delta (See {@link #getAdditions()} and {@link #getRemovals()}),
+     * and then rollback the changes.
+     * 
+     * @throws SailException When writes have occured, changes are never passed to the underlying sail.
+     */
+    @Override
+    public void commit() throws SailException {
+        if (added != null && (!added.isEmpty() || !removed.isEmpty()))
+            throw new SailException("PipelineSailConnection.commit() is not allowed with non-empty delta.");
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void rollback() throws SailException {
+        endModelUnit();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public CloseableIteration<? extends BindingSet, QueryEvaluationException> evaluate(TupleExpr tupleExpr, Dataset dataset, BindingSet bindings, boolean includeInferred)
+        throws SailException {
+        if (added == null || (added.isEmpty() && removed.isEmpty()))
+            return wrapped.evaluate(tupleExpr, dataset, bindings, includeInferred);
+        tupleExpr = tupleExpr.clone();
+        if (!(tupleExpr instanceof QueryRoot))
+            tupleExpr = new QueryRoot(tupleExpr);
+        DeltaMerger merger = new DeltaMerger(added, removed);
+        merger.optimize(tupleExpr, dataset, bindings);
+        return queryEvaluator.evaluate(this.getWrappedConnection(), valueFactory, dataset, includeInferred, (QueryRoot)tupleExpr, bindings);
+    }
+
+    @Override public void executeUpdate(UpdateExpr updateExpr, Dataset dataset, BindingSet bindings, boolean includeInferred) throws SailException {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * <strong>Currently not supported.</strong>
+     */
+    @Override
+    public CloseableIteration<? extends Resource, SailException> getContextIDs() throws SailException {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @SuppressWarnings("unchecked")
+    //conversion from varargs
+    @Override
+    public CloseableIteration<? extends Statement, SailException> getStatements(Resource subj, URI pred, Value obj, boolean includeInferred, Resource... contexts)
+        throws SailException {
+        CloseableIteration<? extends Statement, SailException> result = wrapped.getStatements(subj, pred, obj, includeInferred, contexts);
+        if (added == null)
+            return result;
+        Model excluded = removed.filter(subj, pred, obj, contexts);
+        Model included = added.filter(subj, pred, obj, contexts);
+        if (included.isEmpty() && excluded.isEmpty())
+            return result;
+        if (!excluded.isEmpty())
+            result = new ExcludeIteration(result, new HashSet<Statement>(excluded));
+        result = new UnionIteration<Statement, SailException>(new CloseableIteratorIteration<Statement, SailException>(new HashSet<Statement>(included).iterator()), result);
+        return result;
+    }
+
+    /**
+     * @return The connection to the underlying store.
+     */
+    public SailConnection getWrappedConnection() {
+        return wrapped;
+    }
+
+    /**
+     * @param Change the underlying sail connection. <strong>Use with care</strong>. Because of the inherited risks this method may not be available in future versions.
+     */
+    public void setWrappedConnection(SailConnection connection) {
+        wrapped = connection;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public long size(Resource... contexts) throws SailException {
+        if (added == null) //then removed is also null
+            return wrapped.size(contexts);
+        return wrapped.size(contexts) + size(added, contexts) - size(removed, contexts);
+    }
+
+    /**
+     * @return Returns a summary of the changes made (added and removed statements).
+     */
+    public Delta getDelta() {
+        return new Delta(added, removed);
+    }
+
+    
+    //Method is used, PMD has problems with overloading
+    private long size(Model model, Resource... contexts) {
+        if (contexts.length == 0)
+            return model.size();
+        return model.filter(null, null, null, contexts).size();
+    }
+
+    private static class ExcludeIteration extends FilterIteration<Statement, SailException> {
+        private final Collection<Statement> exclude;
+
+        public ExcludeIteration(CloseableIteration<? extends Statement, SailException> iter, Collection<Statement> exclude) {
+            super(iter);
+            this.exclude = exclude;
+        }
+
+        @Override
+        protected boolean accept(Statement st) throws SailException {
+            return !exclude.contains(st);
+        }
+    }
+
+    @Override
+    public boolean isOpen() throws SailException {
+        return wrapped.isOpen();
+    }
+
+    @Override
+    public CloseableIteration<? extends Namespace, SailException> getNamespaces() throws SailException {
+        return wrapped.getNamespaces();
+    }
+
+    @Override
+    public String getNamespace(String prefix) throws SailException {
+        return wrapped.getNamespace(prefix);
+    }
+
+    @Override
+    public void setNamespace(String prefix, String name) throws SailException {
+        wrapped.setNamespace(prefix, name);
+    }
+
+    @Override
+    public void removeNamespace(String prefix) throws SailException {
+        wrapped.removeNamespace(prefix);
+    }
+
+    @Override
+    public void clearNamespaces() throws SailException {
+        wrapped.clearNamespaces();
+    }
+}

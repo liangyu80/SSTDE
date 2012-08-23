@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/iacat-enviro-ci/!svn/ver/171/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/postgis
+END
+IndexedStatement.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/iacat-enviro-ci/!svn/ver/120/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/postgis/IndexedStatement.java
+END
+PostgisIndexer.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/svn/iacat-enviro-ci/!svn/ver/171/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/postgis/PostgisIndexer.java
+END
+PostgisIteration.java
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/svn/iacat-enviro-ci/!svn/ver/166/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/postgis/PostgisIteration.java
+END
+PartitionDef.java
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/postgis/PartitionDef.java
+END
+PostgisIndexMatcher.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/postgis/PostgisIndexMatcher.java
+END
+PostgisIndexerSettings.java
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/svn/iacat-enviro-ci/!svn/ver/170/SGST/useekm-core2/trunk/useekm-core2/src/main/java/com/useekm/indexing/postgis/PostgisIndexerSettings.java
+END

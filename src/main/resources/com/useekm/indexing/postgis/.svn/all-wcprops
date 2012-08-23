@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 116
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/indexing/postgis
+END
+childtable.sql
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/indexing/postgis/childtable.sql
+END
+basetable.sql
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/iacat-enviro-ci/!svn/ver/80/SGST/useekm-core2/trunk/useekm-core2/src/main/resources/com/useekm/indexing/postgis/basetable.sql
+END

@@ -1,0 +1,87 @@
+/*
+ * Copyright 2011 by TalkingTrends (Amsterdam, The Netherlands)
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ * 
+ * http://opensahara.com/licenses/apache-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package com.useekm.indexing.internal;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.openrdf.query.algebra.evaluation.impl.ExternalSet;
+import org.openrdf.sail.Sail;
+import org.openrdf.sail.StackableSail;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.useekm.pipeline.PipelineSail;
+
+import edu.ncsa.sstde.indexing.IndexingSail;
+
+public final class QueryEvaluatorUtil {
+    private static final Logger LOG = LoggerFactory.getLogger(QueryEvaluatorUtil.class);
+    private static final Map<String, QueryEvaluator> QUERY_EVALUATORS = new HashMap<String, QueryEvaluator>();
+    static final String CLASSNAME_MEMORY_STORE = "org.openrdf.sail.memory.MemoryStore";
+    static final String CLASSNAME_NATIVE_STORE = "org.openrdf.sail.nativerdf.NativeStore";
+    static final String CLASSNAME_BIGDATA_STORE = "com.bigdata.rdf.sail.BigdataSail";
+    static final String CLASSNAME_BLUEPRINT_STORE = "com.tinkerpop.blueprints.pgm.oupls.sail.GraphSail";
+    static {
+        QUERY_EVALUATORS.put(CLASSNAME_MEMORY_STORE, PassOnQueryEvaluator.INSTANCE);
+        QUERY_EVALUATORS.put(CLASSNAME_NATIVE_STORE, PassOnQueryEvaluator.INSTANCE);
+        QUERY_EVALUATORS.put(CLASSNAME_BLUEPRINT_STORE, PassOnQueryEvaluator.INSTANCE);
+        QUERY_EVALUATORS.put(CLASSNAME_BIGDATA_STORE, BigdataQueryEvaluator.INSTANCE);
+        QUERY_EVALUATORS.put(PipelineSail.class.getName(), PassOnQueryEvaluator.INSTANCE);
+        QUERY_EVALUATORS.put(IndexingSail.class.getName(), PassOnQueryEvaluator.INSTANCE);
+    }
+
+    /**
+     * Provide a custom {@link QueryEvaluator} for a specific type of Sail. A {@link QueryEvaluator} specifies how queries are rewritten and optimized to support
+     * the features of {@link IndexingSail} and/or {@link PipelineSail}. Normally there should be no need to call this function. If you need to provide a custom
+     * evaluator for a specific type of sail please let us know, and we will add the required customizations to our next release.
+     * <p>
+     * If you do feel the need to call this method, it should be done before any Sail is constructed.
+     * 
+     * @see #getEvaluator(Sail)
+     */
+    public static void setEvaluator(Class<? extends Sail> sailClazz, QueryEvaluator support) {
+        if (support != null)
+            QUERY_EVALUATORS.put(sailClazz.getName(), support);
+        else
+            QUERY_EVALUATORS.remove(sailClazz.getName());
+    }
+
+    /**
+     * <strong>This method is internal to to Open Sahara and should normally not be called from client code</code>
+     * <p>
+     * This defines which {@link QueryEvaluator} is to be used for evaluation of queries under a specifc Sail implementation. For example: Sesame Native supports an
+     * {@link ExternalSet} TupleExpr that can be used to insert binding results in a query for query parts that are evaluated by the index of an {@link IndexingSail}, while most
+     * other stores either do not support that element, or only support it for values that are actually known to the database. BigData has an efficient method to stream bindings
+     * into a running query, etc.
+     */
+    public static QueryEvaluator getEvaluator(Sail sail) {
+        QueryEvaluator result = getEvaluator(sail, QUERY_EVALUATORS);
+        LOG.debug("QueryEvaluator={} for {}", result.toString(), sail);
+        return result;
+    }
+
+    private static QueryEvaluator getEvaluator(Sail sail, Map<String, QueryEvaluator> evaluators) {
+        Class<? extends Object> clazz = sail.getClass();
+        while (clazz != null) {
+            QueryEvaluator result = evaluators.get(clazz.getName());
+            if (result != null)
+                return result;
+            clazz = clazz.getSuperclass();
+        }
+        if (sail instanceof StackableSail)
+            return getEvaluator(((StackableSail)sail).getBaseSail(), evaluators);
+        return DefaultQueryEvaluator.INSTANCE;
+    }
+}

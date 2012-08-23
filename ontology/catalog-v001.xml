@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <group id="Folder Repository, directory=, recursive=true, Auto-Update=true, version=2" prefer="public" xml:base="">
+        <uri id="Automatically generated entry, Timestamp=1329154339945" name="http://purl.oclc.org/NET/ssnx/ssn" uri="ssn.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1329154339945" name="http://sweet.jpl.nasa.gov/2.2/sweetAll.owl" uri="sweetAll.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1329154339945" name="http://www.loa-cnr.it/ontologies/DUL.owl" uri="DUL.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1329154339945" name="http://www.uiuc.ncsa.edu/ontology/LinkedSensorData" uri="ncsaont.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1329154339945" name="duplicate:http://www.w3.org/2006/12/owl2-xml#" uri="SysML-QUDV-SI-v5.owl"/>
+        <uri id="Automatically generated entry, Timestamp=1329154339945" name="duplicate:http://www.w3.org/2006/12/owl2-xml#" uri="SysML-QUDV-v5.owl"/>
+    </group>
+</catalog>

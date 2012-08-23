@@ -1,0 +1,279 @@
+/*
+ * Copyright 2012 by TalkingTrends (Amsterdam, The Netherlands)
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ * 
+ * http://opensahara.com/licenses/apache-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+package com.useekm.indexing;
+
+import info.aduna.iteration.CloseableIteration;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Properties;
+
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
+import org.openrdf.model.Resource;
+import org.openrdf.model.Statement;
+import org.openrdf.model.URI;
+import org.openrdf.model.Value;
+import org.openrdf.model.impl.StatementImpl;
+import org.openrdf.query.MalformedQueryException;
+import org.openrdf.query.QueryLanguage;
+import org.openrdf.query.UnsupportedQueryLanguageException;
+import org.openrdf.query.algebra.TupleExpr;
+import org.openrdf.query.parser.ParsedTupleQuery;
+import org.openrdf.query.parser.QueryParserUtil;
+import org.openrdf.sail.SailConnection;
+import org.openrdf.sail.SailException;
+import com.useekm.indexing.GraphAnalyzer.MatchedIndexedGraph;
+import com.useekm.indexing.IndexingSailConnection.StatementWrapper;
+import com.useekm.indexing.internal.Indexer;
+
+public class IndexManager {
+	private Collection<Indexer> indexers = null;
+	private static IndexManager manager = null;
+//	private Collection<Statement> toAddStatements = new ArrayList<Statement>();
+//	private Collection<Statement> toRemoveStatements = new ArrayList<Statement>();
+	private int MAX_CACHE_SIZE = 1000;
+
+	// public static class StatementOperation {
+	// public static final int OPERATION_ADD = 1;
+	// public static final int OPERATION_REMOVE = 2;
+	// private Statement statement = null;
+	// private int operation = 0;
+	//
+	// public Statement getStatement() {
+	// return statement;
+	// }
+	//
+	// public int getOperation() {
+	// return operation;
+	// }
+	//
+	// public StatementOperation(Statement statement, int operation) {
+	// this.statement = statement;
+	// this.operation = operation;
+	// }
+	// }
+
+	public synchronized static IndexManager getInstance() {
+		if (manager == null) {
+			manager = new IndexManager();
+			manager.configure();
+		}
+		return manager;
+	}
+
+	   public synchronized static IndexManager getInstance(String configFilePath) throws IOException {
+	        if (manager == null) {
+	            manager = new IndexManager();
+	            manager.configure(configFilePath);
+	        }
+	        return manager;
+	    }
+
+	
+	public Collection<Indexer> getIndexers() {
+		if (this.indexers == null) {
+			this.indexers = new ArrayList<Indexer>();
+		}
+		return indexers;
+	}
+
+	public void configure(String filePath) throws IOException {
+		FileInputStream fileInputStream = new FileInputStream(filePath);
+		configure(fileInputStream);
+		fileInputStream.close();
+	}
+
+	public void configure() {
+		InputStream inputStream = IndexManager.class.getClassLoader()
+				.getResourceAsStream("index.cfg.xml");
+		configure(inputStream);
+	}
+
+	public MatchedIndexedGraph findBestIndexGraph(TupleExpr tupleExpr) {
+		int maxScore = 0;
+		MatchedIndexedGraph bestPattern = null;
+		for (Indexer indexer : getIndexers()) {
+
+			GraphAnalyzer analyzer = new GraphAnalyzer(indexer.getSettings()
+					.getIndexGraph());
+
+			MatchedIndexedGraph graph = analyzer
+					.selectBestMatchedGraph(tupleExpr);
+
+			if (graph != null) {
+				graph.setIndexer(indexer);
+				int thisscore = graph.getScore();
+				if (thisscore > maxScore) {
+					maxScore = thisscore;
+					bestPattern = graph;
+				}
+			}
+		}
+		return bestPattern;
+	}
+
+	public MatchedIndexedGraph findBestIndexer(String sparql)
+			throws MalformedQueryException, UnsupportedQueryLanguageException {
+
+		ParsedTupleQuery parsedQuery = QueryParserUtil.parseTupleQuery(
+				QueryLanguage.SPARQL, sparql, null);
+		// long t1 = System.currentTimeMillis();
+		MatchedIndexedGraph graph = findBestIndexGraph(parsedQuery.getTupleExpr());
+		// long t2 = System.currentTimeMillis();
+		// System.out.println(" takes " + (t2 - t1));
+		return graph;
+	}
+
+	public void configure(InputStream file) {
+
+		try {
+			Document document = (new SAXReader()).read(file);
+			List<Element> indexerElms = document.getRootElement().elements(
+					"indexer");
+
+			for (Element indexerElm : indexerElms) {
+				String settingClass = indexerElm.elementText("setting-class")
+						.trim();
+//				Class.forName(settingClass);
+				IndexerSettings indexerSettings = (IndexerSettings) Class
+						.forName(settingClass).newInstance();
+				Properties properties = new Properties();
+				List<Element> propElements = indexerElm.element("init")
+						.elements("property");
+				for (Element propElm : propElements) {
+					properties.put(propElm.attributeValue("name"),
+							propElm.attributeValue("value"));
+				}
+				Element graphElm = indexerElm.element("indexGraph-setting");
+				String pattern = graphElm.elementTextTrim("pattern");
+				Collection<LiteralDef> literals = new ArrayList<LiteralDef>();
+				for (Object literalDefElm : graphElm.elements("literal")) {
+					Element literalDefElm2 = (Element) literalDefElm;
+					literals.add(new LiteralDef(literalDefElm2
+							.attributeValue("var"), literalDefElm2
+							.attributeValue("type")));
+				}
+				IndexGraph graph = new IndexGraph(pattern, literals);
+				properties.put("index-graph", graph);
+				properties
+						.put("index-table", indexerElm.attributeValue("name"));
+				indexerSettings.initProperties(properties);
+				Indexer indexer = indexerSettings.createIndexer();
+				indexer.setName(indexerElm.attributeValue("name"));
+				getIndexers().add(indexer);
+			}
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (MalformedQueryException e) {
+			e.printStackTrace();
+		} catch (UnsupportedQueryLanguageException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void configure(File file) throws IOException {
+		FileInputStream fileInputStream = new FileInputStream(file);
+		configure(fileInputStream);
+		fileInputStream.close();
+	}
+
+	public void initialize() {
+		for (Indexer indexer : this.getIndexers()) {
+			indexer.initialize();
+		}
+	}
+
+//	public void addIndex(Resource subj, URI pred, Value obj, Resource[] ctx) {
+//		// for (Indexer indexer: this.getIndexers()) {
+//		// indexer.addIndex(subj, pred, obj, ctx);
+//		// }
+//		this.toAddStatements.add(new StatementImpl(subj, pred, obj));
+//	}
+//
+//	public void removeIndex(Resource subj, URI pred, Value obj, Resource[] ctx) {
+//
+//		this.toRemoveStatements.add(new StatementImpl(subj, pred, obj));
+//	}
+
+//	public void commit() {
+//		for (Indexer indexer : this.getIndexers()) {
+//			indexer.commit();
+//		}
+//		// for (Indexer indexer : this.getIndexers()) {
+//		// indexer.executeBatchAdd(connection, this.toAddStatements);
+//		// Statement statement = statementOperation.statement;
+//		// if (statementOperation.operation ==
+//		// StatementOperation.OPERATION_ADD) {
+//		// indexer.addIndex(connection, statement.getSubject(),
+//		// statement.getPredicate(), statement.getObject(),
+//		// statement.getContext());
+//		// }else if (statementOperation.operation ==
+//		// StatementOperation.OPERATION_REMOVE) {
+//		// indexer.removeIndex(connection, statement.getSubject(),
+//		// statement.getPredicate(), statement.getObject(),
+//		// statement.getContext());
+//		// }
+//		// indexer.commit();
+//		// }
+//
+//		// this.toAddStatements.clear();
+//	}
+
+	public void close() {
+
+		for (Indexer indexer : this.getIndexers()) {
+			indexer.close();
+		}
+	}
+
+	public void reindex(SailConnection connection) throws SailException {
+
+		for (Indexer indexer : indexers) {
+			indexer.reindex(connection);
+		}
+	}
+
+	public void addBatch(SailConnection sailConnection, Collection<Statement> toAdd) {
+		for (Indexer indexer: this.getIndexers()) {
+			indexer.addBatch(sailConnection, toAdd);
+		}
+	}
+
+	public void removeBatch(SailConnection sailConnection, Collection<Statement> toRemove) {
+		for (Indexer indexer: this.getIndexers()) {
+			indexer.removeBatch(sailConnection, toRemove);
+		}
+	}
+
+	public void clear() {
+		for (Indexer indexer: this.getIndexers()) {
+			indexer.clear();
+		}
+	}
+
+}
